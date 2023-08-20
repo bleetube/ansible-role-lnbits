@@ -1,0 +1,16 @@
+---
+- name: Ensure root path
+  ansible.builtin.file:
+    path:  "{{ lnbits_install_path }}"
+    state: directory
+    mode: '0755'
+  become: yes
+
+- name: Clone git repository
+  ansible.builtin.git:
+    repo: "{{ lnbits_repository_url }}"
+    dest: "{{ lnbits_repository_path }}"
+    version: "{{ lnbits_version }}"
+    force: true
+  register: git_repository
+  when: not lnbits_devmode

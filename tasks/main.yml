@@ -1,0 +1,9 @@
+---
+- name: Assert that we are not logged in as root
+  assert:
+    that:
+      - ansible_user_id != 'root'
+    fail_msg: "This role must not be run as root. It will only escalate privileges as needed."
+
+- import_tasks: setup.yml
+- import_tasks: install.yml
