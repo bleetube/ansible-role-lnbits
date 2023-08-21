@@ -1,6 +1,28 @@
 ---
+# https://github.com/lnbits/lnbits/blob/main/docs/guide/installation.md
+
 - name: Ensure Python3 is installed
   ansible.builtin.package:
-    name: python3
+    name: 
+    # - python3
+    # - python3-distutils
+      - pipx
     state: present
   become: yes
+
+- name: Install Poetry using pipx
+  ansible.builtin.command:
+    cmd: pipx install poetry
+  register: poetry_install
+
+- name: Install all lnbits dependencies using Poetry
+  ansible.builtin.command:
+    cmd: ~/.local/bin/poetry install --only main
+    chdir: "{{ lnbits_repository_path }}"
+  register: lnbits_install
+
+- name: Append poetry completions to .bash_completion
+  ansible.builtin.lineinfile:
+    path: ~/.bash_completion
+    line: poetry completions bash
+    create: yes
