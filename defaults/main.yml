@@ -1,5 +1,5 @@
 ---
-lnbits_install_path: /var/lib/lnbits
+lnbits_root_path: /var/lib/lnbits
 lnbits_version: 0.10.9 # github.com/lnbits/lnbits/releases
 lnbits_repository_path: "{{ ansible_env.HOME }}/src/lnbits" # ~/src/lnbits
 lnbits_devmode: no

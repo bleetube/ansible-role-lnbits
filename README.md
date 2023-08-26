@@ -3,9 +3,9 @@
 This Ansible Role installs [lnbits](https://github.com/lnbits/lnbits). It is intended to be composed with a separate role for the web proxy configuration.
 
 Tested on:
-
-* Archlinux
 * Ubuntu 22.04
+
+Archlinux requires [conda](https://aur.archlinux.org/packages/miniconda3) to avoid library problems w/ python3.11
 
 ## Requirements
 
@@ -20,8 +20,6 @@ None.
 See the role [defaults](defaults/main.yml). For a working example, see this [homelab stack](https://github.com/bleetube/satstack).
 
 ## Example Playbook
-
-This role should not be run as root.
 
 ```yaml
 - hosts: lnbits
