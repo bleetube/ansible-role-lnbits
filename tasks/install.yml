@@ -13,13 +13,22 @@
 - name: Install Poetry using pipx
   ansible.builtin.command:
     cmd: pipx install poetry
-  register: poetry_install
+    creates: ~/.local/bin/poetry
+
+- name: Clone git repository
+  ansible.builtin.git:
+    repo: "{{ lnbits_repository_url }}"
+    dest: "{{ lnbits_root_path }}"
+    version: "{{ lnbits_version }}"
+    force: true
+  register: git_repository
+  when: not blee_devmode
 
 - name: Install all lnbits dependencies using Poetry
   ansible.builtin.command:
     cmd: ~/.local/bin/poetry install --only main
-    chdir: "{{ lnbits_repository_path }}"
-  register: lnbits_install
+    chdir: "{{ lnbits_root_path }}"
+  when: git_repository.changed or blee_devmode
 
 - name: Append poetry completions to .bash_completion
   ansible.builtin.lineinfile:

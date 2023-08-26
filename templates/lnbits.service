@@ -1,0 +1,19 @@
+[Unit]
+Description=LNbits
+{% if lightning_systemd_servicename | default(None) %}
+Wants={{ lightning_systemd_servicename }}
+After={{ lightning_systemd_servicename }}
+{% endif %}
+
+[Service]
+User={{ lnbits_system_user|default(ansible_user) }}
+Group={{ lnbits_system_group|default(ansible_user) }}
+WorkingDirectory={{ lnbits_root_path }}
+ExecStart={{ ansible_env.HOME }}/.local/bin/poetry run lnbits
+Restart=always
+TimeoutSec=120
+RestartSec=30
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

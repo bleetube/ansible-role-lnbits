@@ -1,5 +1,12 @@
 ---
-lnbits_root_path: /var/lib/lnbits
+lnbits_root_path: /var/www/lnbits
 lnbits_version: 0.10.9 # github.com/lnbits/lnbits/releases
-lnbits_repository_path: "{{ ansible_env.HOME }}/src/lnbits" # ~/src/lnbits
-lnbits_devmode: no
+
+blee_devmode: no # "yes" means skip git clone and always run poetry install
+
+# optional name of local lightning service to start after
+#lightning_systemd_servicename: lightningd.service
+
+# optional name of local user to run lnbits as
+#lnbits_system_user: lnbits
+#lnbits_system_group: lnbits

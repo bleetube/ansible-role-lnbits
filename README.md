@@ -4,8 +4,7 @@ This Ansible Role installs [lnbits](https://github.com/lnbits/lnbits). It is int
 
 Tested on:
 * Ubuntu 22.04
-
-Archlinux requires [conda](https://aur.archlinux.org/packages/miniconda3) to avoid library problems w/ python3.11
+* ~~Archlinux~~ Looks like Arch currently requires [conda](https://aur.archlinux.org/packages/miniconda3) to avoid library problems w/ python3.11
 
 ## Requirements
 

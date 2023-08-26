@@ -1,0 +1,12 @@
+---
+- name: Install the systemd service unit
+  ansible.builtin.template:
+    src: lnbits.service
+    dest: /etc/systemd/system/lnbits.service
+
+- name: Ensure the service unit is started and enabled
+  ansible.builtin.systemd:
+    name: lnbits
+    state: started
+    enabled: yes
+    daemon_reload: yes
