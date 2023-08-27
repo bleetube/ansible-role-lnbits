@@ -35,3 +35,12 @@
     path: ~/.bash_completion
     line: poetry completions bash
     create: yes
+
+- name: Create a configuration file from the sample
+  ansible.builtin.copy:
+    src: "{{ lnbits_root_path }}/.env.example"
+    dest: "{{ lnbits_root_path }}/.env"
+    mode: 0640
+    force: no
+    remote_src: yes
+  when: not blee_devmode

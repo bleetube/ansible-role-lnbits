@@ -6,4 +6,16 @@
     mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  become: yes
+
+- name: Set up a the lnbits group
+  ansible.builtin.group:
+    name: "{{ lnbits_system_group }}"
+    state: present
+  when: lnbits_system_group is defined
+
+- name: "Add {{ ansible_user }} to the lnbits group"
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: "{{ lnbits_system_group }}"
+    append: yes
+  when: lnbits_system_group is defined
